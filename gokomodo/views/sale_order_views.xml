@@ -1,0 +1,51 @@
+<odoo>
+    <record id="view_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="business_model_id" required="1"/>
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='name']" position="after">
+                <field name="business_model_id" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']" position="attributes">
+                <attribute name="context">{'default_business_model_id': business_model_id}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_order_tree_inherit" model="ir.ui.view">
+        <field name="name">sale.order.tree.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="business_model_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_quotation_tree_inherit" model="ir.ui.view">
+        <field name="name">sale.order.tree.quotation.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="business_model_id"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_sale_order_filter_inherit" model="ir.ui.view">
+        <field name="name">sale.order.filter.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='order_month']" position="after">
+                <filter string="Business Model" name="business_model" domain="[]" context="{'group_by': 'business_model_id'}"/>
+            </xpath>
+        </field>
+    </record>
+    
+</odoo>

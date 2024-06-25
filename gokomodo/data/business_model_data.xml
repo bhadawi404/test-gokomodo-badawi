@@ -1,0 +1,18 @@
+<odoo>
+    <data noupdate="1">
+        <record id="business_model_retail" model="master.business.model">
+            <field name="code">RT</field>
+            <field name="name">Retail</field>
+        </record>
+    
+        <record id="business_model_corporate" model="master.business.model">
+            <field name="code">CORP</field>
+            <field name="name">Corporate</field>
+        </record>
+    
+        <record id="business_model_subscription" model="master.business.model">
+            <field name="code">SUB</field>
+            <field name="name">Subscription</field>
+        </record>
+    </data>
+</odoo>
